@@ -14,7 +14,7 @@ const geocode = (address, callback) => {
     request({ url:url, json: true}, (err,res) => {
         if(err) {
             callback("Something went wrong:",null)
-        } else if(!res.body.features.length) {
+        } else if(!res.body.features) {
             callback("Location not found", null)
         }
         else {
