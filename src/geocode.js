@@ -15,10 +15,20 @@ const geocode = (address, callback) => {
         if(err) {
             callback("Something went wrong:",null)
         } else if(!res.body.features) {
-            callback("Location not found", null)
+            try {
+                callback("Location not found", null)
+            } catch(err) {
+                return
+            }
+            
         }
         else {
-            callback(null, res.body.features[0].center)
+            try{
+                callback(null, res.body.features[0].center)
+            } catch (err) {
+                callback("Location not found", null)
+            }
+            
         }
     })
 }
